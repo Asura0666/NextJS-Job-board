@@ -1,11 +1,11 @@
-import { jobTypes, locationTypes } from "@/lib/job-types";
+import { jobTypes } from "@/lib/job-types";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import Select from "./ui/select";
 import prisma from "@/lib/prisma";
-import { Button } from "./ui/button";
 import { JobFilterValues, jobFilterSchema } from "@/lib/validation";
 import { redirect } from "next/navigation";
+import FormSubmitButton from "./FormSubmitButton";
 
 async function filterJobs(formData: FormData) {
   "use server";
@@ -109,9 +109,9 @@ export default async function JobFilterSidebar({
             </div>
           </div>
 
-          <Button type="submit" className="w-full">
+          <FormSubmitButton type="submit" className="w-full">
             Filter Jobs
-          </Button>
+          </FormSubmitButton>
         </div>
       </form>
     </aside>
