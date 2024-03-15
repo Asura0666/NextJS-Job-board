@@ -12,6 +12,7 @@ interface PageProps {
     remote?: string;
     onsite?: string;
     hybrid?: string;
+    page?:string
   };
 }
 
@@ -41,7 +42,7 @@ function getTitle({
 }
 
 export function generateMetadata({
-  searchParams: { q, type, location, remote, onsite, hybrid },
+  searchParams: { q, type, location, remote, onsite, hybrid, page },
 }: PageProps): Metadata {
   return {
     title: `${getTitle({
@@ -56,7 +57,7 @@ export function generateMetadata({
 }
 
 export default async function Home({
-  searchParams: { q, type, location, remote, onsite, hybrid },
+  searchParams: { q, type, location, remote, onsite, hybrid, page },
 }: PageProps) {
   const filterValues: JobFilterValues = {
     q,
@@ -75,7 +76,7 @@ export default async function Home({
       </div>
       <section className="flex flex-col gap-4 md:flex-row">
         <JobFilterSidebar defaultValues={filterValues} />
-        <JobResults filterValues={filterValues} />
+        <JobResults filterValues={filterValues} page={page? parseInt(page) : undefined}/>
       </section>
     </main>
   );
